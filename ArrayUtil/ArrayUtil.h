@@ -4,4 +4,6 @@ typedef struct arrayUtil{
 	int length;
 } ArrayUtil;
 
-ArrayUtil create(int typeSize, int length);
+ArrayUtil create(int, int);
+
+int areEqual(ArrayUtil, ArrayUtil);
