@@ -73,4 +73,9 @@ int findIndex(ArrayUtil util, void* element) {
 }
 
 
+void dispose(ArrayUtil util) {
+	free(util.base);
+}
+
+
 
