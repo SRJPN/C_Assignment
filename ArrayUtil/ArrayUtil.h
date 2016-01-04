@@ -10,4 +10,8 @@ int areEqual(ArrayUtil, ArrayUtil);
 
 ArrayUtil resize(ArrayUtil, int);
 
-void insertElements(ArrayUtil * list, void * array, int numberOfItems);
+void insertElements(ArrayUtil * list, void * array);
+
+int findIndex(ArrayUtil util, void* element);
+
+void dispose(ArrayUtil util);

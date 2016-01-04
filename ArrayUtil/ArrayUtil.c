@@ -45,14 +45,31 @@ ArrayUtil resize(ArrayUtil list, int newLength) {
 	return newArray;
 }
 
-void insertElements(ArrayUtil * list, void * array, int itemLength) {
+void insertElements(ArrayUtil * list, void * array) {
 	char *arrayByBit = array;
 	char *baseByBit = list->base;
-	for(int i=0; i<itemLength; i++){
-		for(int j=0; j<list->typeSize; j++){
-			baseByBit[i+j]=arrayByBit[i+j];
-		}
+	for(int i=0; i<(list->length)*(list->typeSize); i++){
+			baseByBit[i]=arrayByBit[i];
 	} 
+}
+
+int isSame(char *a, char *b, int length){
+	int same=0;
+	for(int i=0; i<length; i++){
+		if(a[i]==b[i])
+			same++;
+	}
+	return same==length;
+}
+
+int findIndex(ArrayUtil util, void* element) {
+	char *elementByBit = element;
+	char *baseByBit = util.base;
+	for(int i=0; i<util.length; i++){
+		if(isSame(elementByBit, baseByBit+(i*util.typeSize), util.typeSize))
+			return i+1;
+	} 
+	return -1;
 }
 
 
