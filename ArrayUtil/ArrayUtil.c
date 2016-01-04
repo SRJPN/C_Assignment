@@ -41,5 +41,19 @@ ArrayUtil resize(ArrayUtil list, int newLength) {
 	for(int i=0; i<list.length; i++){
 		b[i] = a[i];
 	}
+	free(a);
 	return newArray;
 }
+
+void insertElements(ArrayUtil * list, void * array, int itemLength) {
+	char *arrayByBit = array;
+	char *baseByBit = list->base;
+	for(int i=0; i<itemLength; i++){
+		for(int j=0; j<list->typeSize; j++){
+			baseByBit[i+j]=arrayByBit[i+j];
+		}
+	} 
+}
+
+
+
