@@ -54,12 +54,12 @@ void insertElements(ArrayUtil * list, void * array) {
 }
 
 int isSame(char *a, char *b, int length){
-	int same=0;
-	for(int i=0; i<length; i++){
-		if(a[i]==b[i])
-			same++;
+	while(length){
+		if(a[length-1]!=b[length-1])
+			return 0;
+		length--;
 	}
-	return same==length;
+	return 1;
 }
 
 int findIndex(ArrayUtil util, void* element) {
