@@ -87,6 +87,16 @@ void * findFirst(ArrayUtil util, MatchFunc* match, void* hint){
 	return NULL;
 }
 
+void * findLast(ArrayUtil util, MatchFunc* match, void* hint){
+	void *element;
+	for(int i=util.length-1; i>=0; i--){
+		element = util.base+(util.typeSize*i);
+		if((* match)(hint, element))
+			return element;
+	}
+	return NULL;
+}
+
 int isEven(void * hint, void * item){
 	return *((int *)item)%2==0;
 }

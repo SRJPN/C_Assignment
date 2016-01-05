@@ -18,5 +18,8 @@ int main(){
 	test_findFirst_returns_pointer_of_the_first_element_matches_criteria();
 	test_findFirst_returns_NULL_if_none_of_the_elements_matches_criteria();
 
+	test_findLast_returns_pointer_of_the_first_element_from_last_that_matches_criteria();
+	test_findLast_returns_NULL_if_none_of_the_elements_matches_criteria();
+
 	return 0;
 }

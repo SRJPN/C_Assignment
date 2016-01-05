@@ -21,3 +21,5 @@ void dispose(ArrayUtil util);
 void * findFirst(ArrayUtil util, MatchFunc* match, void* hint);
 
 int isEven(void * hint, void * item);
+
+void * findLast(ArrayUtil util, MatchFunc* match, void* hint);
