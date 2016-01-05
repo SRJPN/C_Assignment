@@ -10,3 +10,6 @@ void test_resize_returns_ArrayUtil_with_new_size();
 void test_findIndex_returns_minus_1_if_the_element_is_not_found();
 void test_findIndex_returns_index_if_the_element_is_found();
 void test_findIndex_returns_index_if_the_element_is_found_once_more();
+
+void test_findFirst_returns_pointer_of_the_first_element_matches_criteria ();
+void test_findFirst_returns_NULL_if_none_of_the_elements_matches_criteria ();

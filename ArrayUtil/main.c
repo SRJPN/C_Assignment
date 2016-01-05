@@ -15,5 +15,8 @@ int main(){
 	test_findIndex_returns_index_if_the_element_is_found();
 	test_findIndex_returns_index_if_the_element_is_found_once_more();
 
+	test_findFirst_returns_pointer_of_the_first_element_matches_criteria();
+	test_findFirst_returns_NULL_if_none_of_the_elements_matches_criteria();
+
 	return 0;
 }

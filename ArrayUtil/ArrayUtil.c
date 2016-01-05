@@ -67,7 +67,7 @@ int findIndex(ArrayUtil util, void* element) {
 	char *baseByBit = util.base;
 	for(int i=0; i<util.length; i++){
 		if(isSame(elementByBit, baseByBit+(i*util.typeSize), util.typeSize))
-			return i+1;
+			return i;
 	} 
 	return -1;
 }
@@ -77,5 +77,18 @@ void dispose(ArrayUtil util) {
 	free(util.base);
 }
 
+void * findFirst(ArrayUtil util, MatchFunc* match, void* hint){
+	void *element;
+	for(int i=0; i<util.length; i++){
+		element = util.base+(util.typeSize*i);
+		if((* match)(hint, element))
+			return element;
+	}
+	return NULL;
+}
+
+int isEven(void * hint, void * item){
+	return *((int *)item)%2==0;
+}
 
 

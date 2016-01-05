@@ -68,7 +68,7 @@ void test_findIndex_returns_index_if_the_element_is_found() {
 	int a = 3;
 	ArrayUtil list = create(4, 5);
 	insertElements(&list, array);
-	assert(findIndex(list, &a)==3);
+	assert(findIndex(list, &a)==2);
 	dispose(list);
 }
 
@@ -77,7 +77,29 @@ void test_findIndex_returns_index_if_the_element_is_found_once_more() {
 	int a = 5;
 	ArrayUtil list = create(4, 5);
 	insertElements(&list, array);
-	assert(findIndex(list, &a)==5);
+	assert(findIndex(list, &a)==4);
 	dispose(list);
 }
+
+void test_findFirst_returns_pointer_of_the_first_element_matches_criteria () {
+	int array[] = {1,2,3,4,5};
+	int a = 5;
+	int *element;
+	ArrayUtil util = create(4, 5);
+	insertElements(&util, array);
+	element = findFirst(util, isEven, NULL);
+	assert(*element==2);
+	dispose(util);
+}
+
+void test_findFirst_returns_NULL_if_none_of_the_elements_matches_criteria () {
+	int array[] = {1,7,3,9,5};
+	int *element;
+	ArrayUtil util = create(4, 5);
+	insertElements(&util, array);
+	element = findFirst(util, isEven, NULL);
+	assert(element==NULL);
+	dispose(util);
+}
+
 
