@@ -167,3 +167,33 @@ void test_findLast_returns_NULL_if_none_of_the_elements_matches_criteria_for_isD
 	dispose(util);
 }
 
+void test_count_returns_count_of_the_number_of_elements_that_matches_given_criteria() {
+	int array[] = {1,2,3,4,5};
+	int element;
+	ArrayUtil util = create(4, 5);
+	insertElements(&util, array);
+	element = count(util, isEven, NULL);
+	assert(element==2);
+	dispose(util);
+}
+
+void test_count_returns_count_of_the_number_of_elements_that_matches_given_criteria_for_isDivisible() {
+	int array[] = {1,2,3,4,5};
+	int element;
+	int a = 2;
+	ArrayUtil util = create(4, 5);
+	insertElements(&util, array);
+	element = count(util, isDivisible, &a);
+	assert(element==2);
+	dispose(util);
+}
+
+void test_count_returns_ZERO_if_none_of_the_elements_matches_given_criteria() {
+	int array[] = {1,3,5,7,9};
+	int element;
+	ArrayUtil util = create(4, 5);
+	insertElements(&util, array);
+	element = count(util, isEven, NULL);
+	assert(element==0);
+	dispose(util);
+}

@@ -63,15 +63,12 @@ int isSame(char *a, char *b, int length){
 }
 
 int findIndex(ArrayUtil util, void* element) {
-	char *elementByBit = element;
-	char *baseByBit = util.base;
 	for(int i=0; i<util.length; i++){
-		if(isSame(elementByBit, baseByBit+(i*util.typeSize), util.typeSize))
+		if(isSame(element, util.base+(i*util.typeSize), util.typeSize))
 			return i;
 	} 
 	return -1;
 }
-
 
 void dispose(ArrayUtil util) {
 	free(util.base);
@@ -85,6 +82,17 @@ void * findFirst(ArrayUtil util, MatchFunc* match, void* hint){
 			return item;
 	}
 	return NULL;
+}
+
+int count(ArrayUtil util, MatchFunc* match, void* hint){
+	void *item;
+	int count=0;
+	for(int i=0; i<util.length; i++){
+		item = util.base+(util.typeSize*i);
+		if(match(hint, item))
+			count++;
+	}
+	return count;
 }
 
 void * findLast(ArrayUtil util, MatchFunc* match, void* hint){

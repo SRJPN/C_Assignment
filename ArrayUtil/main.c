@@ -27,5 +27,9 @@ int main(){
 	test_findLast_returns_pointer_of_the_first_element_from_last_that_matches_criteria_for_isDivisible();
 	test_findLast_returns_NULL_if_none_of_the_elements_matches_criteria_for_isDivisible();
 
+	test_count_returns_count_of_the_number_of_elements_that_matches_given_criteria();
+	test_count_returns_count_of_the_number_of_elements_that_matches_given_criteria_for_isDivisible();
+	test_count_returns_ZERO_if_none_of_the_elements_matches_given_criteria() ;
+
 	return 0;
 }
