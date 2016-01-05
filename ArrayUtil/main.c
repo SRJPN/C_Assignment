@@ -1,7 +1,8 @@
 #include "test_ArrayUtil.h"
+#include <stdio.h>
 
 int main(){
-	
+	int i=0;
 	test_create_creates_new_Array();
 
 	test_areEqual_returns_1_for_two_equal_ArrayUtils_with_all_elements_zero();
@@ -18,8 +19,13 @@ int main(){
 	test_findFirst_returns_pointer_of_the_first_element_matches_criteria();
 	test_findFirst_returns_NULL_if_none_of_the_elements_matches_criteria();
 
+	test_findFirst_returns_pointer_of_the_first_element_matches_criteria_for_isDivisible ();
+	test_findFirst_returns_NULL_if_none_of_the_elements_matches_criteria_for_isDivisible ();	
+
 	test_findLast_returns_pointer_of_the_first_element_from_last_that_matches_criteria();
 	test_findLast_returns_NULL_if_none_of_the_elements_matches_criteria();
+	test_findLast_returns_pointer_of_the_first_element_from_last_that_matches_criteria_for_isDivisible();
+	test_findLast_returns_NULL_if_none_of_the_elements_matches_criteria_for_isDivisible();
 
 	return 0;
 }

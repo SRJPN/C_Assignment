@@ -123,3 +123,47 @@ void test_findLast_returns_NULL_if_none_of_the_elements_matches_criteria () {
 	dispose(util);
 }
 
+void test_findFirst_returns_pointer_of_the_first_element_matches_criteria_for_isDivisible () {
+	int array[] = {1,2,3,4,5};
+	int a = 2;
+	int *element;
+	ArrayUtil util = create(4, 5);
+	insertElements(&util, array);
+	element = findFirst(util, &isDivisible, &a);
+	assert(*element==2);
+	dispose(util);
+}
+
+void test_findFirst_returns_NULL_if_none_of_the_elements_matches_criteria_for_isDivisible () {
+	int array[] = {1,2,3,4,5};
+	int a = 7;
+	int *element;
+	ArrayUtil util = create(4, 5);
+	insertElements(&util, array);
+	element = findFirst(util, &isDivisible, &a);
+	assert(element==NULL);
+	dispose(util);
+}
+
+void test_findLast_returns_pointer_of_the_first_element_from_last_that_matches_criteria_for_isDivisible() {
+	int array[] = {1,2,3,4,5};
+	int a = 5;
+	int *element;
+	ArrayUtil util = create(4, 5);
+	insertElements(&util, array);
+	element = findLast(util, isDivisible, &a);
+	assert(*element==5);
+	dispose(util);
+}
+
+void test_findLast_returns_NULL_if_none_of_the_elements_matches_criteria_for_isDivisible () {
+	int array[] = {1,2,3,4,5};
+	int *element;
+	int a = 7;
+	ArrayUtil util = create(4, 5);
+	insertElements(&util, array);
+	element = findLast(util, isDivisible, &a);
+	assert(element==NULL);
+	dispose(util);
+}
+

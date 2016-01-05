@@ -78,11 +78,11 @@ void dispose(ArrayUtil util) {
 }
 
 void * findFirst(ArrayUtil util, MatchFunc* match, void* hint){
-	void *element;
+	void *item;
 	for(int i=0; i<util.length; i++){
-		element = util.base+(util.typeSize*i);
-		if((* match)(hint, element))
-			return element;
+		item = util.base+(util.typeSize*i);
+		if(match(hint, item))
+			return item;
 	}
 	return NULL;
 }
@@ -91,7 +91,7 @@ void * findLast(ArrayUtil util, MatchFunc* match, void* hint){
 	void *element;
 	for(int i=util.length-1; i>=0; i--){
 		element = util.base+(util.typeSize*i);
-		if((* match)(hint, element))
+		if (match(hint, element)==1)
 			return element;
 	}
 	return NULL;
@@ -101,4 +101,7 @@ int isEven(void * hint, void * item){
 	return *((int *)item)%2==0;
 }
 
+int isDivisible(void * hint, void * item){
+	return *((int *) item) % *((int *) hint) == 0;
+}
 
