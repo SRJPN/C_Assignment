@@ -31,5 +31,9 @@ int main(){
 	test_count_returns_count_of_the_number_of_elements_that_matches_given_criteria_for_isDivisible();
 	test_count_returns_ZERO_if_none_of_the_elements_matches_given_criteria() ;
 
+	test_filter_returns_number_of_matches_found ();
+	test_filter_stopes_when_max_size_of_destination_reaches();
+	test_filter_stopes_when_max_size_of_destination_reaches ();
+
 	return 0;
 }

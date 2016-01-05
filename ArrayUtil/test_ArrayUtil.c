@@ -197,3 +197,78 @@ void test_count_returns_ZERO_if_none_of_the_elements_matches_given_criteria() {
 	assert(element==0);
 	dispose(util);
 }
+
+void test_filter_returns_number_of_matches_found (){
+	int array[] = {1,2,3,4,5,6};
+	void *dest[3];
+	int count=0;
+	ArrayUtil util = create(4,6);
+	insertElements(&util, array);
+	count = filter(util, isEven, NULL, *dest, 3);
+	assert(count==3);
+	dispose(util);
+}
+
+void test_filter_gives_the_addresses_of_matched_elements_to_destination (){
+	int array[] = {1,2,3,4,5,6};
+	int result[] = {2,4,6};
+	void *dest[3];
+	int count=0;
+	ArrayUtil util = create(4,6);
+	insertElements(&util, array);
+	count = filter(util, isEven, NULL, *dest, 3);
+	for (int i = 0; i < 3; ++i){
+		assert(((int *)dest)[i]==result[i]);
+	};
+	dispose(util);
+}
+
+void test_filter_stopes_when_max_size_of_destination_reaches (){
+	int array[] = {2,2,6,4,5,6};
+	void *dest[3];
+	int count=0;
+	ArrayUtil util = create(4,6);
+	insertElements(&util, array);
+	count = filter(util, isEven, NULL, *dest, 3);
+	assert(count==3);
+	dispose(util);
+}
+
+void test_filter_returns_number_of_matches_found_for_isDivisible (){
+	int array[] = {1,2,3,4,5,6};
+	void *dest[3];
+	int count=0;
+	int a = 2;
+	ArrayUtil util = create(4,6);
+	insertElements(&util, array);
+	count = filter(util, isDivisible, &a, *dest, 3);
+	assert(count==3);
+	dispose(util);
+}
+
+void test_filter_gives_the_addresses_of_matched_elements_to_destination_for_isDivisible (){
+	int array[] = {1,2,3,4,5,6};
+	int result[] = {2,4,6};
+	void *dest[3];
+	int count=0;
+	int a = 2;
+	ArrayUtil util = create(4,6);
+	insertElements(&util, array);
+	count = filter(util, isDivisible, &a, *dest, 3);
+	for (int i = 0; i < 3; ++i){
+		assert(((int *)dest)[i]==result[i]);
+	};
+	dispose(util);
+}
+
+void test_filter_stopes_when_max_size_of_destination_reaches_for_isDivisible (){
+	int array[] = {2,2,6,4,5,6};
+	void *dest[3];
+	int count=0;
+	int a = 2;
+	ArrayUtil util = create(4,6);
+	insertElements(&util, array);
+	count = filter(util, isDivisible, &a, *dest, 3);
+	assert(count==3);
+	dispose(util);
+}

@@ -27,3 +27,5 @@ void * findLast(ArrayUtil util, MatchFunc* match, void* hint);
 int isDivisible(void * hint, void * item);
 
 int count(ArrayUtil util, MatchFunc* match, void* hint);
+
+int filter(ArrayUtil util, MatchFunc* match, void* hint, void** destination, int maxItems);

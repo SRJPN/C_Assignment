@@ -113,3 +113,17 @@ int isDivisible(void * hint, void * item){
 	return *((int *) item) % *((int *) hint) == 0;
 }
 
+int filter(ArrayUtil util, MatchFunc* match, void* hint, void** destination, int maxItems) {
+	void *item;
+	int count = 0;
+	for (int i = 0; i < util.length && maxItems>0; ++i){
+		item = util.base+(util.typeSize*i);
+		if(match(hint, item)){
+			count++;
+			*destination = item;
+			destination+=util.typeSize;
+			maxItems--;
+		}
+	}
+	return count;
+}
