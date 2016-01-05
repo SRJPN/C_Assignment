@@ -1,0 +1,12 @@
+void test_create_creates_new_Array();
+
+void test_areEqual_returns_1_for_two_equal_ArrayUtils_with_all_elements_zero();
+void test_areEqual_returns_1_for_two_equal_ArrayUtils_with_elements();
+void test_areEqual_returns_0_for_two_ArrayUtils_With_different_length();
+void test_areEqual_returns_0_for_two_ArrayUtils_With_different_typeSize();
+
+void test_resize_returns_ArrayUtil_with_new_size();
+
+void test_findIndex_returns_minus_1_if_the_element_is_not_found();
+void test_findIndex_returns_index_if_the_element_is_found();
+void test_findIndex_returns_index_if_the_element_is_found_once_more();

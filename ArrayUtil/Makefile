@@ -1,2 +1,2 @@
-test: test_ArrayUtil.c ArrayUtil.c
-	gcc test_ArrayUtil.c ArrayUtil.c -o test
+test: test_ArrayUtil.c ArrayUtil.c main.c
+	gcc main.c test_ArrayUtil.c ArrayUtil.c -o test
