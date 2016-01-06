@@ -80,7 +80,7 @@ var create_report = function(tests){
 
 var present_Failed_test = function(test){
 	console.log('✗ ',test.name);
-	console.log("\t"+test.result.stderr.toString())
+	// console.log("\t"+test.result.stderr.toString())
 };
 
 var present_passed_test = function(test){

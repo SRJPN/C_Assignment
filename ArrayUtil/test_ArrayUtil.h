@@ -27,4 +27,7 @@ void test_count_returns_ZERO_if_none_of_the_elements_matches_given_criteria() ;
 
 void test_filter_returns_number_of_matches_found ();
 void test_filter_stopes_when_max_size_of_destination_reaches();
-void test_filter_stopes_when_max_size_of_destination_reaches ();
+void test_filter_gives_the_addresses_of_matched_elements_to_destination ();
+void test_filter_returns_number_of_matches_found_for_isDivisible ();
+void test_filter_stopes_when_max_size_of_destination_reaches_for_isDivisible();
+void test_filter_gives_the_addresses_of_matched_elements_to_destination_for_isDivisible ();
