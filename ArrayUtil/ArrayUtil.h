@@ -10,6 +10,8 @@ typedef void (ConvertFunc)(void* hint, void* sourceItem, void* destinationItem);
 
 typedef void (OperationFunc)(void* hint, void* item);
 
+typedef void* (ReducerFunc)(void* hint, void* previousItem, void* item);
+
 ArrayUtil create(int typeSize, int length);
 
 int areEqual(ArrayUtil, ArrayUtil);
@@ -34,14 +36,22 @@ int count(ArrayUtil util, MatchFunc* match, void* hint);
 
 int filter(ArrayUtil util, MatchFunc* match, void* hint, void** destination, int maxItems);
 
-void map(ArrayUtil source, ArrayUtil *destination, ConvertFunc* convert, void* hint);
+void map(ArrayUtil source, ArrayUtil destination, ConvertFunc* convert, void* hint);
 
 void addOne(void *hint, void *source, void *dest) ;
 
 void addWith(void *hint, void *source, void *dest) ;
 
-void forEach(ArrayUtil *util, OperationFunc* operation, void* hint);
+void forEach(ArrayUtil util, OperationFunc* operation, void* hint);
 
 void addOneForEach(void* hint, void* item) ;
 
 void addWithForEach(void* hint, void* item) ;
+
+void * reduce(ArrayUtil util, ReducerFunc* reducer, void* hint, void* intialValue);
+
+void * totalReducer(void* hint, void* previousItem, void* item) ;
+
+void * sumOfMultiples(void* hint, void* previousItem, void* item) ;
+
+

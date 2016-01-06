@@ -283,7 +283,7 @@ void test_map_does_function_on_all_elements_of_array_and_stores_in_destination (
 	int expected_array[] = {2,3,4,5,6};
 	insertElements(&expected, expected_array);
 	int *a = dest.base;
-	map(source, &dest, addOne, NULL);
+	map(source, dest, addOne, NULL);
 	
 	assert(areEqual(dest, expected)==1);
 }
@@ -300,7 +300,7 @@ void test_map_does_function_on_all_elements_of_array_and_stores_in_destination_w
 	insertElements(&expected, expected_array);
 	int a = 1;
 
-	map(source, &dest, addWith, &a);
+	map(source, dest, addWith, &a);
 	
 	assert(areEqual(dest, expected)==1);
 }
@@ -315,7 +315,7 @@ void test_forEach_does_given_operation_on_all_elements_of_array (){
 	int expected_array[] = {2,3,4,5,6};
 	insertElements(&expected, expected_array);
 
-	forEach(&source, addOneForEach, NULL);
+	forEach(source, addOneForEach, NULL);
 	
 	assert(areEqual(source, expected)==1);
 }
@@ -332,7 +332,33 @@ void test_forEach_does_given_operation_on_all_elements_of_array_with_addWithForE
 
 	int a = 1;
 
-	forEach(&source, addWithForEach, &a);
+	forEach(source, addWithForEach, &a);
 	
 	assert(areEqual(source, expected)==1);
+}
+
+void test_reduce_does_given_operation_on_all_the_elements_and_returns_final_value (){
+	ArrayUtil source = create(4,5);
+
+	int source_array[] = {1,2,3,4,5};
+	insertElements(&source, source_array);
+
+	int inital_value = 0;
+
+	void *result = reduce(source, totalReducer, NULL, &inital_value);
+	
+	assert(*((int *)result)==15);
+}
+
+void test_reduce_does_given_operation_on_all_the_elements_and_returns_final_value_with_sumOfMultiples (){
+	ArrayUtil source = create(4,2);
+
+	int source_array[] = {1,2};
+	insertElements(&source, source_array);
+
+	int inital_value = 0;
+	int multiple = 2;
+
+	void *result = reduce(source, sumOfMultiples, &multiple, &inital_value);
+	assert(*((int *)result)==5);
 }

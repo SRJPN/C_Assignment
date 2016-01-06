@@ -129,9 +129,9 @@ int filter(ArrayUtil util, MatchFunc* match, void* hint, void** destination, int
 	return count;
 }
 
-void map(ArrayUtil source, ArrayUtil *destination, ConvertFunc* convert, void* hint) {
+void map(ArrayUtil source, ArrayUtil destination, ConvertFunc* convert, void* hint) {
 	void *src = source.base;
-	void *dest = destination->base;
+	void *dest = destination.base;
 	while(source.length){
 		convert(hint, src, dest);
 		src+=source.typeSize;
@@ -148,11 +148,11 @@ void addWith(void *hint, void *source, void *dest) {
 	*(int *)dest = (*(int *)source)+(*(int *)hint);
 }
 
-void forEach(ArrayUtil *util, OperationFunc* operation, void* hint){
-	void *item = util->base;
-	for (int i = 0; i < util->length; ++i){
+void forEach(ArrayUtil util, OperationFunc* operation, void* hint){
+	void *item = util.base;
+	for (int i = 0; i < util.length; ++i){
 		operation(hint, item);
-		item+=util->typeSize;
+		item+=util.typeSize;
 	}
 }
 
@@ -163,3 +163,23 @@ void addOneForEach(void* hint, void* item) {
 void addWithForEach(void* hint, void* item) {
 	*(int *)item += *(int *)hint;
 }
+
+void * reduce(ArrayUtil util, ReducerFunc* reducer, void* hint, void* intialValue) {
+	void *item = util.base;
+	void *gross = (void *)calloc(1, util.length);
+	memcpy(gross, intialValue, util.length);
+
+	for (int i = 0; i < util.length; ++i){
+		reducer(hint, gross, item);
+		item+=util.typeSize;
+	}
+	return gross;
+}
+
+void * totalReducer(void* hint, void* previousItem, void* item) {
+	*(int *)previousItem += *(int *)item;
+ }
+
+ void * sumOfMultiples(void* hint, void* previousItem, void* item) {
+	*(int *)previousItem += ((*(int *)item)*(*(int *)item));
+ }
