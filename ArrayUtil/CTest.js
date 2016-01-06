@@ -80,10 +80,18 @@ var create_report = function(tests){
 
 var present_Failed_test = function(test){
 	console.log('✗ ',test.name);
-	// console.log("\t"+test.result.stderr.toString())
+	if(test.result.stdout && test.result.stderr){
+		console.log("\t",test.result.stdout.toString());
+		console.log("\t",test.result.stderr.toString());
+	}
+	else{
+		console.log("\t"+test.compile.stdout.toString());
+		console.log("\t"+test.compile.stderr.toString());
+	}
 };
 
 var present_passed_test = function(test){
+	console.log("\t"+test.result.stdout.toString());
 	console.log('✔ ',test.name)
 };
 
