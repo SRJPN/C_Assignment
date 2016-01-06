@@ -11,28 +11,11 @@ ArrayUtil create(int typeSize, int length){
 	return a;
 }
 
-int dereference_And_ArrayUtil_Check(void * a, void * b) {
-	char *c = a;
-	char *d = b;
-	return *c==*d;
-}
-
 int areEqual(ArrayUtil a, ArrayUtil b) {
-	int status=1, size=a.length*a.typeSize;
 	if(a.length==b.length && a.typeSize==b.typeSize){
-		while(size){
-			if(!dereference_And_ArrayUtil_Check(a.base, b.base)){
-				return 0;
-			}
-			a.base++;
-			b.base++;
-			size--;
-		}
-		return 1;
+		return memcmp(a.base, b.base, a.length*a.typeSize)==0;
 	}
-	else{
 		return 0;
-	}
 }
 
 ArrayUtil resize(ArrayUtil list, int newLength) {
