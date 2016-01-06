@@ -147,3 +147,19 @@ void addOne(void *hint, void *source, void *dest) {
 void addWith(void *hint, void *source, void *dest) {
 	*(int *)dest = (*(int *)source)+(*(int *)hint);
 }
+
+void forEach(ArrayUtil *util, OperationFunc* operation, void* hint){
+	void *item = util->base;
+	for (int i = 0; i < util->length; ++i){
+		operation(hint, item);
+		item+=util->typeSize;
+	}
+}
+
+void addOneForEach(void* hint, void* item) {
+	*(int *)item += 1;
+}
+
+void addWithForEach(void* hint, void* item) {
+	*(int *)item += *(int *)hint;
+}

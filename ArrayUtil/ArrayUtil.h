@@ -8,6 +8,8 @@ typedef int(MatchFunc)(void * hint, void * item);
 
 typedef void (ConvertFunc)(void* hint, void* sourceItem, void* destinationItem);
 
+typedef void (OperationFunc)(void* hint, void* item);
+
 ArrayUtil create(int typeSize, int length);
 
 int areEqual(ArrayUtil, ArrayUtil);
@@ -37,3 +39,9 @@ void map(ArrayUtil source, ArrayUtil *destination, ConvertFunc* convert, void* h
 void addOne(void *hint, void *source, void *dest) ;
 
 void addWith(void *hint, void *source, void *dest) ;
+
+void forEach(ArrayUtil *util, OperationFunc* operation, void* hint);
+
+void addOneForEach(void* hint, void* item) ;
+
+void addWithForEach(void* hint, void* item) ;

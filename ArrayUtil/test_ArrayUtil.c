@@ -299,7 +299,40 @@ void test_map_does_function_on_all_elements_of_array_and_stores_in_destination_w
 	int expected_array[] = {2,3,4,5,6};
 	insertElements(&expected, expected_array);
 	int a = 1;
+
 	map(source, &dest, addWith, &a);
 	
 	assert(areEqual(dest, expected)==1);
+}
+
+void test_forEach_does_given_operation_on_all_elements_of_array (){
+	ArrayUtil source = create(4,5);
+	ArrayUtil expected = create(4,5);
+
+	int source_array[] = {1,2,3,4,5};
+	insertElements(&source, source_array);
+
+	int expected_array[] = {2,3,4,5,6};
+	insertElements(&expected, expected_array);
+
+	forEach(&source, addOneForEach, NULL);
+	
+	assert(areEqual(source, expected)==1);
+}
+
+void test_forEach_does_given_operation_on_all_elements_of_array_with_addWithForEach (){
+	ArrayUtil source = create(4,5);
+	ArrayUtil expected = create(4,5);
+
+	int source_array[] = {1,2,3,4,5};
+	insertElements(&source, source_array);
+
+	int expected_array[] = {2,3,4,5,6};
+	insertElements(&expected, expected_array);
+
+	int a = 1;
+
+	forEach(&source, addWithForEach, &a);
+	
+	assert(areEqual(source, expected)==1);
 }
