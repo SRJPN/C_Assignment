@@ -6,6 +6,8 @@ typedef struct arrayUtil{
 
 typedef int(MatchFunc)(void * hint, void * item);
 
+typedef void (ConvertFunc)(void* hint, void* sourceItem, void* destinationItem);
+
 ArrayUtil create(int typeSize, int length);
 
 int areEqual(ArrayUtil, ArrayUtil);
@@ -29,3 +31,9 @@ int isDivisible(void * hint, void * item);
 int count(ArrayUtil util, MatchFunc* match, void* hint);
 
 int filter(ArrayUtil util, MatchFunc* match, void* hint, void** destination, int maxItems);
+
+void map(ArrayUtil source, ArrayUtil *destination, ConvertFunc* convert, void* hint);
+
+void addOne(void *hint, void *source, void *dest) ;
+
+void addWith(void *hint, void *source, void *dest) ;

@@ -128,3 +128,22 @@ int filter(ArrayUtil util, MatchFunc* match, void* hint, void** destination, int
 	}
 	return count;
 }
+
+void map(ArrayUtil source, ArrayUtil *destination, ConvertFunc* convert, void* hint) {
+	void *src = source.base;
+	void *dest = destination->base;
+	while(source.length){
+		convert(hint, src, dest);
+		src+=source.typeSize;
+		dest+=source.typeSize;
+		source.length--;
+	}
+}
+
+void addOne(void *hint, void *source, void *dest) {
+	*(int *)dest = (*(int *)source)+1;
+}
+
+void addWith(void *hint, void *source, void *dest) {
+	*(int *)dest = (*(int *)source)+(*(int *)hint);
+}

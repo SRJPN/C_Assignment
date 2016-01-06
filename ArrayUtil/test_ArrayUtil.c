@@ -247,17 +247,17 @@ void test_filter_returns_number_of_matches_found_for_isDivisible (){
 }
 
 void test_filter_gives_the_addresses_of_matched_elements_to_destination_for_isDivisible (){
-	// int array[] = {1,2,3,4,8,6};
-	// int expected_array[] = {2,4,8,6};
-	// int a = 2;
-	// ArrayUtil util = create(4,6);
-	// // ArrayUtil result = create(4,4);
-	// // ArrayUtil dest = create(4, 3);
-	// // insertElements(&result, &expected_array);
-	// // insertElements(&util, array);
-	// // filter(util, isDivisible, &a, &dest, dest.length);
-	// // assert(areEqual(result, dest)==0);
-	// dispose(util);
+	int array[] = {1,2,3,4,8,6};
+	int expected_array[] = {2,4,8,6};
+	int a = 2;
+	ArrayUtil util = create(4,6);
+	ArrayUtil result = create(4,4);
+	ArrayUtil dest = create(4, 3);
+	insertElements(&result, &expected_array);
+	insertElements(&util, array);
+	filter(util, isDivisible, &a, &dest, dest.length);
+	assert(areEqual(result, dest)==0);
+	dispose(util);
 }
 
 void test_filter_stopes_when_max_size_of_destination_reaches_for_isDivisible (){
@@ -270,4 +270,36 @@ void test_filter_stopes_when_max_size_of_destination_reaches_for_isDivisible (){
 	count = filter(util, isDivisible, &a, *dest, 3);
 	assert(count==3);
 	dispose(util);
+}
+
+void test_map_does_function_on_all_elements_of_array_and_stores_in_destination (){
+	ArrayUtil source = create(4,5);
+	ArrayUtil dest = create(4,5);
+	ArrayUtil expected = create(4,5);
+
+	int source_array[] = {1,2,3,4,5};
+	insertElements(&source, source_array);
+
+	int expected_array[] = {2,3,4,5,6};
+	insertElements(&expected, expected_array);
+	int *a = dest.base;
+	map(source, &dest, addOne, NULL);
+	
+	assert(areEqual(dest, expected)==1);
+}
+
+void test_map_does_function_on_all_elements_of_array_and_stores_in_destination_with_addWith (){
+	ArrayUtil source = create(4,5);
+	ArrayUtil dest = create(4,5);
+	ArrayUtil expected = create(4,5);
+
+	int source_array[] = {1,2,3,4,5};
+	insertElements(&source, source_array);
+
+	int expected_array[] = {2,3,4,5,6};
+	insertElements(&expected, expected_array);
+	int a = 1;
+	map(source, &dest, addWith, &a);
+	
+	assert(areEqual(dest, expected)==1);
 }
