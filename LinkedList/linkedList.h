@@ -15,3 +15,5 @@ LinkedList createList(void);
 int addToList(LinkedList *,void *);
 
 void *getFirstElement(LinkedList list);
+
+void *getLastElement(LinkedList list);

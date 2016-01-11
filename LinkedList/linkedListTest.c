@@ -33,3 +33,13 @@ void test_getFirstElement_gives_the_address_of_first_element_in_the_list () {
 	Element *element = getFirstElement(list);
 	assert(*(int *)(element->value) == 5);
 }
+
+void test_getLastElement_gives_the_address_of_last_element_in_the_list () {
+	LinkedList list = createList();
+	int a = 5;
+	int b = 10;
+	addToList(&list, &a);
+	addToList(&list, &b);
+	Element *element = getLastElement(list);
+	assert(*(int *)(element->value) == 10);
+}

@@ -27,3 +27,7 @@ int addToList(LinkedList *list, void *data) {
 void *getFirstElement(LinkedList list) {
 	return list.head;
 }
+
+void *getLastElement(LinkedList list) {
+	return list.tail;
+}
