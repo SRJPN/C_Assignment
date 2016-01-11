@@ -43,3 +43,24 @@ void test_getLastElement_gives_the_address_of_last_element_in_the_list () {
 	Element *element = getLastElement(list);
 	assert(*(int *)(element->value) == 10);
 }
+
+void add2 (void *value) {
+	*(int *)value += 2;
+}
+
+void test_forEach_goes_through_the_list_and_performs_the_given_action_on_each_element () {
+	LinkedList list = createList();
+	int a = 5;
+	int b = 10;
+	addToList(&list, &a);
+	addToList(&list, &b);
+
+	forEach(list, add2);
+
+	Element *element = getFirstElement(list);
+	assert(*(int *)(element->value) == 7);
+
+	element = getLastElement(list);
+	assert(*(int *)(element->value) == 12);
+
+}
