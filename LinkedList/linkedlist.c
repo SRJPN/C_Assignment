@@ -10,7 +10,7 @@ LinkedList createList (void) {
 	return a;
 }
 
-int add_to_list(LinkedList *list, void *data) {
+int addToList(LinkedList *list, void *data) {
 	Element *temp = (Element *)malloc(sizeof(Element));
 	temp->value = data;
 	if(list->length == 0){
@@ -22,4 +22,8 @@ int add_to_list(LinkedList *list, void *data) {
 		(list->length)++;
 	}
 	return 0;
+}
+
+void *getFirstElement(LinkedList list) {
+	return list.head;
 }
