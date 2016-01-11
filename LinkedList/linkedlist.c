@@ -13,11 +13,13 @@ LinkedList createList (void) {
 int addToList(LinkedList *list, void *data) {
 	Element *temp = (Element *)malloc(sizeof(Element));
 	temp->value = data;
+	temp->next = NULL;
 	if(list->length == 0){
 		list->head = list->tail = temp;
 		(list->length)++;
 	}
 	else{
+		list->tail->next = temp;
 		list->tail = temp;
 		(list->length)++;
 	}
