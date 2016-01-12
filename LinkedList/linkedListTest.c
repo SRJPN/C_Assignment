@@ -119,6 +119,13 @@ void test_indexOf_returns_the_minus_one_of_given_address_of_the_value_if_the_val
 	assert(index == -1);
 }
 
+void printList(LinkedList list){
+
+	for (int i = 0; i < list.length; ++i){
+		/* code */
+	}
+}
+
 void test_deleteElementAt_deletes_the_element_at_the_given_index_and_returns_the_address_of_the_value_in_the_deleted_element () {
 	LinkedList list = createList();
 	int array[] = {1,2,3,4,5,6};
@@ -132,7 +139,7 @@ void test_deleteElementAt_deletes_the_element_at_the_given_index_and_returns_the
 	assert(*(int *)value == 4);
 }
 
-void test_deleteElementAt_does_nothing_and_returns_NULL_if_invalid_index_is_given () {
+void test_deleteElementAt_deletes_the_first_element_and_rewrites_head_if_first_element_is_choosen_to_delete () {
 	LinkedList list = createList();
 	int array[] = {1,2,3,4,5,6};
 
@@ -140,7 +147,24 @@ void test_deleteElementAt_does_nothing_and_returns_NULL_if_invalid_index_is_give
 		addToList(&list, &array[i]);
 	}
 
-	void *value = deleteElementAt(&list, 10);
+	void *value = deleteElementAt(&list, 0);
 
-	assert(value == NULL);
+	assert(*(int *)value == 1);
+
+	assert(*(int *)(list.head->value) == 2);
+}
+
+void test_deleteElementAt_deletes_the_last_element_and_rewrites_tail_if_last_element_is_choosen_to_delete () {
+	LinkedList list = createList();
+	int array[] = {1,2,3,4,5,6};
+
+	for (int i = 0; i < 6; ++i){
+		addToList(&list, &array[i]);
+	}
+
+	void *value = deleteElementAt(&list, 5);
+
+	assert(*(int *)value == 6);
+
+	assert(*(int *)(list.tail->value) == 5);
 }

@@ -66,20 +66,25 @@ int indexOf(LinkedList list, void * value) {
 
 
 void * deleteElementAt(LinkedList *list, int index) {
+	list->length--;
 	Element *previous;
 	Element *temp = list->head;
 	void *value;
 	int count = 0;
-	if(index<list->length){
-		while(count != index){
-			previous = temp;
-			temp = temp->next;
-			count++;
-		};
-		previous->next = temp->next;
-		value = temp->value;
+	if(index == 0){
+		list->head = temp->next;
 		free(temp);
-		return value;
+		return temp->value;
+	}
+	while(count != index){
+		previous = temp;
+		temp = temp->next;
+		count++;
 	};
-	return NULL;
+	previous->next = temp->next;
+	value = temp->value;
+	if(index == list->length)
+		list->tail = previous;
+	free(temp);
+	return value;
 }
