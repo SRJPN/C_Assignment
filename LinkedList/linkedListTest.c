@@ -118,3 +118,29 @@ void test_indexOf_returns_the_minus_one_of_given_address_of_the_value_if_the_val
 
 	assert(index == -1);
 }
+
+void test_deleteElementAt_deletes_the_element_at_the_given_index_and_returns_the_address_of_the_value_in_the_deleted_element () {
+	LinkedList list = createList();
+	int array[] = {1,2,3,4,5,6};
+
+	for (int i = 0; i < 6; ++i){
+		addToList(&list, &array[i]);
+	}
+
+	void *value = deleteElementAt(&list, 3);
+
+	assert(*(int *)value == 4);
+}
+
+void test_deleteElementAt_does_nothing_and_returns_NULL_if_invalid_index_is_given () {
+	LinkedList list = createList();
+	int array[] = {1,2,3,4,5,6};
+
+	for (int i = 0; i < 6; ++i){
+		addToList(&list, &array[i]);
+	}
+
+	void *value = deleteElementAt(&list, 10);
+
+	assert(value == NULL);
+}

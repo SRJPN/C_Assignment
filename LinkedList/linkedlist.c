@@ -63,3 +63,23 @@ int indexOf(LinkedList list, void * value) {
 	}
 	return -1;
 }
+
+
+void * deleteElementAt(LinkedList *list, int index) {
+	Element *previous;
+	Element *temp = list->head;
+	void *value;
+	int count = 0;
+	if(index<list->length){
+		while(count != index){
+			previous = temp;
+			temp = temp->next;
+			count++;
+		};
+		previous->next = temp->next;
+		value = temp->value;
+		free(temp);
+		return value;
+	};
+	return NULL;
+}
