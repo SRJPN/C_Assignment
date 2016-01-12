@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include "linkedList.h"
+#include <stdio.h>
 
 void test_createList_creates_a_new_linkedList_initalised_with_all_values_NULL () {
 	LinkedList list = createList();
@@ -63,4 +64,30 @@ void test_forEach_goes_through_the_list_and_performs_the_given_action_on_each_el
 	element = getLastElement(list);
 	assert(*(int *)(element->value) == 12);
 
+}
+
+void test_getElementAt_gives_the_address_of_the_element_at_given_index () {
+	LinkedList list = createList();
+	int a = 5;
+	int b = 10;
+	void *element;
+	addToList(&list, &a);
+	addToList(&list, &b);
+
+	element = getElementAt(list, 1);
+
+	assert(*(int *)element == 10);
+}
+
+void test_getElementAt_gives_the_NULL_for_a_given_invalid_index () {
+	LinkedList list = createList();
+	int a = 5;
+	int b = 10;
+	void *element;
+	addToList(&list, &a);
+	addToList(&list, &b);
+
+	element = getElementAt(list, 9);
+
+	assert(element == NULL);
 }

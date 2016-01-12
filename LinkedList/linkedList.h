@@ -20,3 +20,5 @@ void *getFirstElement(LinkedList list);
 void *getLastElement(LinkedList list);
 
 void forEach(LinkedList, ElementProcessor e);
+
+void * getElementAt(LinkedList, int );

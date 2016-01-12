@@ -39,3 +39,16 @@ void forEach(LinkedList list, ElementProcessor e) {
 		element = element->next;
 	};
 }
+
+void * getElementAt(LinkedList list, int index) {
+	int count = 0;
+	Element *temp = list.head;
+	if(index<list.length){
+		while(count != index){
+			temp = temp->next;
+			count++;
+		};
+		return temp->value;
+	};
+	return NULL;
+}
