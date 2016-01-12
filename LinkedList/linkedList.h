@@ -1,6 +1,7 @@
 typedef struct {
 	void *value;
 	void *next;	
+	// int index;
 } Element;
 
 typedef struct {
@@ -22,3 +23,5 @@ void *getLastElement(LinkedList list);
 void forEach(LinkedList, ElementProcessor e);
 
 void * getElementAt(LinkedList, int );
+
+int indexOf(LinkedList, void *);

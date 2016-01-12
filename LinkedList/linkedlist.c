@@ -14,6 +14,7 @@ int addToList(LinkedList *list, void *data) {
 	Element *temp = (Element *)malloc(sizeof(Element));
 	temp->value = data;
 	temp->next = NULL;
+	// temp->index = list->length;
 	if(list->length == 0)
 		list->head = list->tail = temp;
 	else{
@@ -51,4 +52,14 @@ void * getElementAt(LinkedList list, int index) {
 		return temp->value;
 	};
 	return NULL;
+}
+
+int indexOf(LinkedList list, void * value) {
+	Element *temp = list.head;
+	for (int i = 0; i < list.length; ++i){
+		if(temp->value == value)
+			return i;
+		temp = temp->next;
+	}
+	return -1;
 }

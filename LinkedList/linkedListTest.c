@@ -91,3 +91,30 @@ void test_getElementAt_gives_the_NULL_for_a_given_invalid_index () {
 
 	assert(element == NULL);
 }
+
+void test_indexOf_returns_the_index_of_given_address_of_the_value () {
+	LinkedList list = createList();
+	int a = 5;
+	int b = 10;
+	void *element;
+	addToList(&list, &a);
+	addToList(&list, &b);
+
+	int index = indexOf(list, &b);
+
+	assert(index == 1);
+}
+
+void test_indexOf_returns_the_minus_one_of_given_address_of_the_value_if_the_value_is_not_found () {
+	LinkedList list = createList();
+	int a = 5;
+	int b = 10;
+	int c = 15;
+	void *element;
+	addToList(&list, &a);
+	addToList(&list, &b);
+
+	int index = indexOf(list, &c);
+
+	assert(index == -1);
+}
