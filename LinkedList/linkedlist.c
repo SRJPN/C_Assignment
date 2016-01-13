@@ -100,3 +100,14 @@ int asArray(LinkedList list, void **dest, int maxElements) {
 	}
 	return count;
 }
+
+LinkedList filter(LinkedList list, MatchFunc match) {
+	LinkedList result = createList();
+	Element *element = list.head;
+	while(element != NULL){
+		if(match(NULL,element->value))
+			addToList(&result, element->value);
+		element = element->next;
+	}
+	return result;
+}

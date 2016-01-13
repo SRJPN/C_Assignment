@@ -217,3 +217,53 @@ void test_asArray_copies_address_of_the_values_in_the_list_to_the_given_destinat
 		dest+=8;
 	}
 }
+
+int isEven (void* hint, void* item) {
+	return (*(int *)item)%2 == 0;
+}
+
+int isOdd (void* hint, void* item) {
+	return !isEven(hint, item);
+}
+
+void test_filter_filters_all_the_values_in_the_list_that_satisfies_given_criteria_and_returns_new_list () {
+	LinkedList list = createList();
+	int array[] = {1,2,3,4,5,6};
+	int result_array[] = {2,4,6};
+
+	for (int i = 0; i < 6; ++i){
+		addToList(&list, &array[i]);
+	}
+
+	LinkedList result = filter(list, isEven);
+
+	void *dest = (int *)calloc(3,8);
+
+	int countOfCopied = asArray(result, dest, 3);
+	assert(countOfCopied == 3);
+	for (int i = 0; i < result.length; ++i){
+		assert(**(int **)dest == result_array[i]);
+		dest+=8;
+	}
+}
+
+void test_filter_filters_all_the_values_in_the_list_that_satisfies_given_criteria_and_returns_new_list_using_isOdd () {
+	LinkedList list = createList();
+	int array[] = {1,2,3,4,5,6};
+	int result_array[] = {1,3,5};
+
+	for (int i = 0; i < 6; ++i){
+		addToList(&list, &array[i]);
+	}
+
+	LinkedList result = filter(list, isOdd);
+
+	void *dest = (int *)calloc(3,8);
+
+	int countOfCopied = asArray(result, dest, 3);
+	assert(countOfCopied == 3);
+	for (int i = 0; i < result.length; ++i){
+		assert(**(int **)dest == result_array[i]);
+		dest+=8;
+	}
+}
