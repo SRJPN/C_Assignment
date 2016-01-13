@@ -32,4 +32,4 @@ void * deleteElementAt(LinkedList *, int);
 
 int asArray(LinkedList, void **, int maxElements);
 
-LinkedList  filter(LinkedList, MatchFunc );
+LinkedList  filter(LinkedList, MatchFunc, void *);

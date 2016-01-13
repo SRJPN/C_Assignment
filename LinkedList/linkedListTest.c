@@ -235,7 +235,7 @@ void test_filter_filters_all_the_values_in_the_list_that_satisfies_given_criteri
 		addToList(&list, &array[i]);
 	}
 
-	LinkedList result = filter(list, isEven);
+	LinkedList result = filter(list, isEven, NULL);
 
 	void *dest = (int *)calloc(3,8);
 
@@ -256,7 +256,7 @@ void test_filter_filters_all_the_values_in_the_list_that_satisfies_given_criteri
 		addToList(&list, &array[i]);
 	}
 
-	LinkedList result = filter(list, isOdd);
+	LinkedList result = filter(list, isOdd, NULL);
 
 	void *dest = (int *)calloc(3,8);
 
