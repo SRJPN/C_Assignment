@@ -1,7 +1,6 @@
 typedef struct {
 	void *value;
 	void *next;	
-	// int index;
 } Element;
 
 typedef struct {
@@ -13,6 +12,8 @@ typedef struct {
 typedef void (*ElementProcessor)(void *);
 
 typedef int (MatchFunc)(void* hint, void* item);
+
+typedef void (ConvertFunc)(void* hint, void* sourceItem, void* destinationItem);
 
 LinkedList createList(void);
 
@@ -35,3 +36,5 @@ int asArray(LinkedList, void **, int maxElements);
 LinkedList  filter(LinkedList, MatchFunc, void *);
 
 LinkedList reverse(LinkedList);
+
+LinkedList map(LinkedList, ConvertFunc, void * );

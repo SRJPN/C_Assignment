@@ -122,5 +122,13 @@ LinkedList reverse(LinkedList list) {
 		as_array -= 8;
 	}
 	return reversed_list;
+}
 
+LinkedList map(LinkedList list, ConvertFunc convert, void *hint) {
+	Element *element = list.head;
+	while(element != NULL){
+		convert(hint, element->value, element->value);
+		element = element->next;
+	}
+	return list;
 }

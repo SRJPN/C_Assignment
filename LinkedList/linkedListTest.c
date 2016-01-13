@@ -329,5 +329,29 @@ void test_reverse_reverses_the_given_list () {
 		assert(**(int **)dest == result_array[i]);
 		dest+=8;
 	}
+}
 
+void addWith(void* hint, void* sourceItem, void* destinationItem) {
+	*(int *)destinationItem = *(int *)sourceItem + *(int *)hint;
+}
+
+void test_map_does_given_function_on_each_element_and_return_a_new_list () {
+	LinkedList list = createList();
+	int array[] = {1,2,3,4,5,6};
+	int result_array[] = {3,4,5,6,7,8};
+	for (int i = 0; i < 6; ++i){
+		addToList(&list, &array[i]);
+	}
+	int a = 2;
+	LinkedList result_list = map(list, addWith, &a);
+
+	void *dest = (int *)calloc(6,8);
+
+	int countOfCopied = asArray(result_list, dest, 6);
+
+	assert(countOfCopied == 6);
+	for (int i = 0; i < result_list.length; ++i){
+		assert(**(int **)dest == result_array[i]);
+		dest+=8;
+	}
 }
