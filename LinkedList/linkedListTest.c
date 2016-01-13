@@ -185,3 +185,35 @@ void test_asArray_copies_address_of_all_the_values_to_the_destination_given () {
 		dest+=8;
 	}
 }
+
+void test_asArray_copies_address_of_all_the_values_to_the_destination_given_and_returns_the_count_of_copied_values () {
+	LinkedList list = createList();
+	int array[] = {1,2,3,4,5,6};
+
+	for (int i = 0; i < 6; ++i){
+		addToList(&list, &array[i]);
+	}
+
+	void *dest = (int *)calloc(6,8);
+
+	int countOfCopied = asArray(list, dest, 6);
+	assert(countOfCopied == 6);
+}
+
+void test_asArray_copies_address_of_the_values_in_the_list_to_the_given_destination_until_the_given_limit () {
+	LinkedList list = createList();
+	int array[] = {1,2,3,4,5,6};
+
+	for (int i = 0; i < 6; ++i){
+		addToList(&list, &array[i]);
+	}
+
+	void *dest = (int *)calloc(2,8);
+
+	int countOfCopied = asArray(list, dest, 2);
+	assert(countOfCopied == 2);
+	for (int i = 0; i < 2; ++i){
+		assert(**(int **)dest == array[i]);
+		dest+=8;
+	}
+}
