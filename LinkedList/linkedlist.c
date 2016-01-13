@@ -88,3 +88,15 @@ void * deleteElementAt(LinkedList *list, int index) {
 	free(temp);
 	return value;
 }
+
+int asArray(LinkedList list, void **dest, int maxElements) {
+	int count = 0;
+	Element *element = list.head;
+	while(count<maxElements && element != NULL){
+		*dest = element->value;
+		element = element->next;
+		count++;
+		dest++;
+	}
+	return count;
+}

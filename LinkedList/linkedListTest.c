@@ -168,3 +168,20 @@ void test_deleteElementAt_deletes_the_last_element_and_rewrites_tail_if_last_ele
 
 	assert(*(int *)(list.tail->value) == 5);
 }
+
+void test_asArray_copies_address_of_all_the_values_to_the_destination_given () {
+	LinkedList list = createList();
+	int array[] = {1,2,3,4,5,6};
+
+	for (int i = 0; i < 6; ++i){
+		addToList(&list, &array[i]);
+	}
+
+	void *dest = (int *)calloc(6,8);
+
+	int countOfCopied = asArray(list, dest, 6);
+	for (int i = 0; i < 6; ++i){
+		assert(**(int **)dest == array[i]);
+		dest+=8;
+	}
+}
