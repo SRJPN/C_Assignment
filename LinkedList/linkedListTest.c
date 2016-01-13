@@ -267,3 +267,46 @@ void test_filter_filters_all_the_values_in_the_list_that_satisfies_given_criteri
 		dest+=8;
 	}
 }
+
+int isDivisible (void* hint, void* item) {
+	return (*(int *)item) % (*(int *)hint)==0;
+}
+
+void test_filter_filters_all_the_values_in_the_list_that_satisfies_given_criteria_and_returns_new_list_using_isDivisible () {
+	LinkedList list = createList();
+	int array[] = {1,2,3,4,5,6};
+	int result_array[] = {2,4,6};
+
+	for (int i = 0; i < 6; ++i){
+		addToList(&list, &array[i]);
+	}
+	int a = 2;
+	LinkedList result = filter(list, isDivisible, &a);
+
+	void *dest = (int *)calloc(3,8);
+
+	int countOfCopied = asArray(result, dest, 3);
+	assert(countOfCopied == 3);
+	for (int i = 0; i < result.length; ++i){
+		assert(**(int **)dest == result_array[i]);
+		dest+=8;
+	}
+}
+
+void test_filter_filters_all_the_values_in_the_list_that_satisfies_given_criteria_and_returns_new_list_using_isDivisible_one_more () {
+	LinkedList list = createList();
+	int array[] = {1,2,3,4,5,6};
+	int result_array[] = {2,4,6};
+
+	for (int i = 0; i < 6; ++i){
+		addToList(&list, &array[i]);
+	}
+	int a = 4;
+	LinkedList result = filter(list, isDivisible, &a);
+
+	void *dest = (int *)calloc(1,8);
+
+	int countOfCopied = asArray(result, dest, 1);
+	assert(countOfCopied == 1);
+	assert(**(int **)dest == 4);
+}
