@@ -111,3 +111,16 @@ LinkedList filter(LinkedList list, MatchFunc match, void *hint) {
 	}
 	return result;
 }
+
+LinkedList reverse(LinkedList list) {
+	LinkedList reversed_list = createList();
+	void *as_array = (int *)calloc(list.length, 8);
+	asArray(list, as_array, list.length);
+	as_array += 8*(list.length-1);
+	for (int i = 0; i < list.length; ++i){
+		addToList(&reversed_list, *(void **)as_array);
+		as_array -= 8;
+	}
+	return reversed_list;
+
+}

@@ -310,3 +310,24 @@ void test_filter_filters_all_the_values_in_the_list_that_satisfies_given_criteri
 	assert(countOfCopied == 1);
 	assert(**(int **)dest == 4);
 }
+
+void test_reverse_reverses_the_given_list () {
+	LinkedList list = createList();
+	int array[] = {1,2,3,4,5,6};
+	int result_array[] = {6,5,4,3,2,1};
+	for (int i = 0; i < 6; ++i){
+		addToList(&list, &array[i]);
+	}
+
+	LinkedList reverse_list = reverse(list);
+
+	void *dest = (int *)calloc(6,8);
+
+	int countOfCopied = asArray(reverse_list, dest, 6);
+	assert(countOfCopied == 6);
+	for (int i = 0; i < reverse_list.length; ++i){
+		assert(**(int **)dest == result_array[i]);
+		dest+=8;
+	}
+
+}
