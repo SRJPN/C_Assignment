@@ -132,3 +132,12 @@ LinkedList map(LinkedList list, ConvertFunc convert, void *hint) {
 	}
 	return list;
 }
+
+void *reduce(LinkedList list, Reducer reducer, void *hint, void *initialValue) {
+	Element *element = list.head;
+	while(element != NULL){		
+		initialValue = reducer(hint, initialValue, element->value);
+	}
+	return initialValue;
+}
+

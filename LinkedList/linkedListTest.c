@@ -355,3 +355,21 @@ void test_map_does_given_function_on_each_element_and_return_a_new_list () {
 		dest+=8;
 	}
 }
+
+void* sumUp(void* hint, void* previousItem, void* item) {
+	*(int *)previousItem += *(int *)item;
+	return previousItem;
+}
+
+void test_reduce_reduces_the_list_and_gives_out_the_address_of_reduced_value () {
+	LinkedList list = createList();
+	int array[] = {1,2,3,4,5,6};
+	int result_array[] = {3,4,5,6,7,8};
+	for (int i = 0; i < 6; ++i){
+		addToList(&list, &array[i]);
+	}
+	// void* result = reduce(list, sumUp, NULL, NULL);
+
+	// printf("%p\n",result);
+
+}
