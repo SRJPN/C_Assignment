@@ -138,9 +138,18 @@ LinkedList map(LinkedList list, ConvertFunc convert, void *hint) {
 
 void *reduce(LinkedList list, Reducer reducer, void *hint, void *initialValue) {
 	Element *element = list.head;
-	while(element != NULL){		
-		initialValue = reducer(hint, initialValue, element->value);
+	void **tempDest = calloc(1,8);
+	if(initialValue != NULL){
+		*tempDest = initialValue;
 	}
-	return initialValue;
+	else{
+		*tempDest = element->value;
+		element = element->next;
+	}
+	while(element != NULL){		
+		*tempDest = reducer(hint, *tempDest, element->value);
+		element = element->next;
+	}
+	return *tempDest;
 }
 
