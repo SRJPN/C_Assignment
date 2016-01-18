@@ -126,13 +126,13 @@ LinkedList reverse(LinkedList list) {
 LinkedList map(LinkedList list, ConvertFunc convert, void *hint) {
 	LinkedList result = createList();
 	Element *element = list.head;
-	void **tempDest = calloc(list.length,8);
+	void **tempDest = malloc(8);
 	while(element != NULL){
 		convert(hint, element->value, tempDest);
 		addToList(&result, *tempDest);
 		element = element->next;
-		tempDest++;
 	}
+	free(tempDest);
 	return result;
 }
 
