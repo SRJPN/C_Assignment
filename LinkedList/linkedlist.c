@@ -14,7 +14,6 @@ int addToList(LinkedList *list, void *data) {
 	Element *temp = (Element *)malloc(sizeof(Element));
 	temp->value = data;
 	temp->next = NULL;
-	// temp->index = list->length;
 	if(list->length == 0)
 		list->head = list->tail = temp;
 	else{
@@ -125,12 +124,16 @@ LinkedList reverse(LinkedList list) {
 }
 
 LinkedList map(LinkedList list, ConvertFunc convert, void *hint) {
+	LinkedList result = createList();
 	Element *element = list.head;
+	void **tempDest = calloc(list.length,8);
 	while(element != NULL){
-		convert(hint, element->value, element->value);
+		convert(hint, element->value, tempDest);
+		addToList(&result, *tempDest);
 		element = element->next;
+		tempDest++;
 	}
-	return list;
+	return result;
 }
 
 void *reduce(LinkedList list, Reducer reducer, void *hint, void *initialValue) {

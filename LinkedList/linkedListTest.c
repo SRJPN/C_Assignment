@@ -332,7 +332,9 @@ void test_reverse_reverses_the_given_list () {
 }
 
 void addWith(void* hint, void* sourceItem, void* destinationItem) {
-	*(int *)destinationItem = *(int *)sourceItem + *(int *)hint;
+	int *dest = (int *)malloc(sizeof(int));
+	*dest = *(int *)sourceItem + *(int *)hint;
+	*(void **)destinationItem = dest;
 }
 
 void test_map_does_given_function_on_each_element_and_return_a_new_list () {
