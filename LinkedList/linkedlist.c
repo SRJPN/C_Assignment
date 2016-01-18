@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "linkedList.h"
+#define SIZE_OF_ADDRESS sizeof(void *)
 
 LinkedList createList (void) {
 	LinkedList a;
@@ -113,12 +114,12 @@ LinkedList filter(LinkedList list, MatchFunc match, void *hint) {
 
 LinkedList reverse(LinkedList list) {
 	LinkedList reversed_list = createList();
-	void *as_array = (int *)calloc(list.length, 8);
+	void *as_array = (int *)calloc(list.length, SIZE_OF_ADDRESS);
 	asArray(list, as_array, list.length);
-	as_array += 8*(list.length-1);
+	as_array += SIZE_OF_ADDRESS*(list.length-1);
 	for (int i = 0; i < list.length; ++i){
 		addToList(&reversed_list, *(void **)as_array);
-		as_array -= 8;
+		as_array -= SIZE_OF_ADDRESS;
 	}
 	return reversed_list;
 }
@@ -126,7 +127,7 @@ LinkedList reverse(LinkedList list) {
 LinkedList map(LinkedList list, ConvertFunc convert, void *hint) {
 	LinkedList result = createList();
 	Element *element = list.head;
-	void **tempDest = malloc(8);
+	void **tempDest = malloc(SIZE_OF_ADDRESS);
 	while(element != NULL){
 		convert(hint, element->value, tempDest);
 		addToList(&result, *tempDest);
@@ -138,7 +139,7 @@ LinkedList map(LinkedList list, ConvertFunc convert, void *hint) {
 
 void *reduce(LinkedList list, Reducer reducer, void *hint, void *initialValue) {
 	Element *element = list.head;
-	void **tempDest = calloc(1,8);
+	void **tempDest = malloc(SIZE_OF_ADDRESS);
 	if(initialValue != NULL){
 		*tempDest = initialValue;
 	}
